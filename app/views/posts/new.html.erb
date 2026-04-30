@@ -1,9 +1,0 @@
-<h1>New Post</h1>
-
-<%= form_with model: @post do |f| %>
-  <div>
-    <%= f.text_area :content, placeholder: "What's happening?", maxlength: 280 %>
-  </div>
-
-  <%= f.submit "Post" %>
-<% end %>
