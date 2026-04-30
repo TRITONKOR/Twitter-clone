@@ -1,0 +1,22 @@
+<h1><%= @user.username %></h1>
+
+<% if logged_in? %>
+  <div style="margin-bottom: 15px;">
+    <%= link_to "Home", root_path %> |
+    <%= link_to "My profile", user_path(current_user) %> |
+    <%= link_to "Users", users_path %> |
+    <%= button_to "Logout", logout_path, method: :delete %>
+  </div>
+<% end %>
+
+<hr>
+
+<h2>Posts</h2>
+
+<% @posts.each do |post| %>
+  <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
+    <%= post.content %><br>
+    <small><%= post.created_at.strftime("%H:%M %d.%m.%Y") %></small>
+  </div>
+<% end %>
+

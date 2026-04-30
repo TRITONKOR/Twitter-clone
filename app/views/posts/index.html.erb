@@ -1,5 +1,10 @@
 <h2>Create post</h2>
 
+<div style="margin-bottom: 10px;">
+  <%= link_to "My profile", user_path(current_user) %>
+  <%= link_to "Find users", users_path %>
+</div>
+
 <%= form_with scope: :post, url: posts_path, method: :post do |f| %>
   <div>
     <%= f.text_area :content, placeholder: "What's happening?", maxlength: 280 %>
@@ -14,12 +19,12 @@
 
 <% @posts.each do |post| %>
   <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
-    <strong><%= post.user.username %></strong><br>
+    <strong>
+        <%= link_to post.user.username, user_path(post.user) %>
+    </strong><br>
     <%= post.content %><br>
     <small><%= post.created_at.strftime("%H:%M %d.%m.%Y") %></small>
   </div>
 <% end %>
-
-<%= button_to "Logout", logout_path, method: :delete %>
 
 
