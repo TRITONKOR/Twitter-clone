@@ -1,0 +1,9 @@
+<h2>Chat with <%= @user.username %></h2>
+
+<% @messages.each do |m| %>
+  <div>
+    <strong><%= m.sender.username %>:</strong>
+    <%= m.content %>
+  </div>
+<% end %>
+

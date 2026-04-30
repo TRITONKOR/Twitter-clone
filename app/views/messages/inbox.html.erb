@@ -1,0 +1,18 @@
+<h2>Inbox</h2>
+
+<div style="margin-bottom: 15px;">
+    <%= link_to "Home", root_path %> |
+    <%= link_to "My profile", user_path(current_user) %> |
+    <%= link_to "Users", users_path %> |
+
+</div>
+
+<br>
+
+<% @messages.each do |m| %>
+  <div style="border: 1px solid #ccc; padding: 8px; margin-bottom: 5px;">
+    <strong><%= m.sender.username %></strong><br>
+    <%= m.content %><br>
+    <small><%= m.created_at.strftime("%H:%M %d.%m") %></small>
+  </div>
+<% end %>

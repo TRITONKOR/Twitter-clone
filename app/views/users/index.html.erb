@@ -1,5 +1,12 @@
 <h1>All users</h1>
 
+<div style="margin-bottom: 15px;">
+    <%= link_to "Home", root_path %> |
+    <%= link_to "My profile", user_path(current_user) %> |
+    <%= link_to "Users", users_path %> |
+
+</div>
+
 <% @users.each do |user| %>
   <div style="margin-bottom: 10px;">
     <%= link_to user.username, user_path(user) %>

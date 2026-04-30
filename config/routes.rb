@@ -16,6 +16,14 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create, :show, :index]
 
+  resources :relationships, only: [:create, :destroy]
+
+  resources :messages, only: [:create, :index] do
+    collection do
+      get :inbox
+    end
+  end
+
   # Defines the root path route ("/")
   # root "posts#index"
 end

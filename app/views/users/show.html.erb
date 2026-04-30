@@ -5,7 +5,17 @@
     <%= link_to "Home", root_path %> |
     <%= link_to "My profile", user_path(current_user) %> |
     <%= link_to "Users", users_path %> |
+    <%= link_to "Inbox", inbox_messages_path %> |
     <%= button_to "Logout", logout_path, method: :delete %>
+    <% unless @user == current_user %>
+
+    <% if current_user.following?(@user) %>
+        <%= button_to "Unfollow", relationship_path(@user), method: :delete %>
+    <% else %>
+        <%= button_to "Follow", relationships_path(followed_id: @user.id), method: :post %>
+    <% end %>
+
+    <% end %>
   </div>
 <% end %>
 
@@ -18,5 +28,17 @@
     <%= post.content %><br>
     <small><%= post.created_at.strftime("%H:%M %d.%m.%Y") %></small>
   </div>
+<% end %>
+
+<% unless @user == current_user %>
+    <h2>Send message</h2>
+
+    <%= form_with url: messages_path, method: :post do %>
+    <%= hidden_field_tag :receiver_id, @user.id %>
+
+    <%= text_area_tag :content, nil, placeholder: "Write message..." %>
+
+    <%= submit_tag "Send" %>
+    <% end %>
 <% end %>
 
